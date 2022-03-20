@@ -1,0 +1,90 @@
+<form [formGroup]="signupForm" (ngSubmit)="onSend()">
+  <div class="form-row">
+    <div class="col">
+      <input
+        type="text"
+        class="form-control"
+        name="userFirstName"
+        placeholder="First name"
+        formControlName="userFirstName"
+      />
+      <p
+        class="help-text"
+        *ngIf="
+          !signupForm.get('userFirstName')!.valid &&
+          signupForm.get('userFirstName')!.touched
+        "
+      >
+        User name must be provided
+      </p>
+    </div>
+    <div class="col">
+      <input
+        type="text"
+        class="form-control"
+        name="userLastName"
+        placeholder="Last name"
+        formControlName="userLastName"
+      />
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col">
+      <input
+        type="text"
+        class="form-control"
+        name="work"
+        placeholder="Job Description"
+        formControlName="work"
+      />
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col">
+      <input
+        type="email"
+        class="form-control"
+        name="email"
+        placeholder="Email"
+        email
+        formControlName="email"
+      />
+      <p
+        class="help-text"
+        *ngIf="
+          !signupForm.get('email')!.valid && signupForm.get('email')!.touched
+        "
+      >
+        Valid email must be provided
+      </p>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col">
+      <div class="radio" *ngFor="let gender of genders">
+        <input
+          type="radio"
+          id="{{ gender }}"
+          name="gender"
+          value="{{ gender }}"
+          formControlName="gender"
+        />
+          <label for="{{ gender }}">{{ gender }}</label
+        ><br />
+        <!-- <label *ngFor="let gender of genders" for="{{ gender }}">
+          <input type="radio" id="{{ gender }}" value="{{ gender }}" />{{
+            gender
+          }}
+        </label> -->
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col">
+      <p class="help-text" *ngIf="!signupForm!.valid && signupForm!.touched">
+        Valid user detalis must be provided
+      </p>
+      <button type="submit" class="btn btn-primary">Send Details</button>
+    </div>
+  </div>
+</form>
